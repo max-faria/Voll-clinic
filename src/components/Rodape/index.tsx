@@ -42,16 +42,16 @@ function Rodape() {
                 </ItemEstilizado>
                 <ItemEstilizado>
                     <a href="#">
-                        <img src={google} alt="logo do google" />
+                        <img src={instagram} alt="logo do instagram" />
                     </a>
                 </ItemEstilizado>
                 <ItemEstilizado>
                     <a href="#">
-                        <img src={instagram} alt="logo do instagram" />
+                        <img src={google} alt="logo do google" />
                     </a>
                 </ItemEstilizado>
             </ListaEstilizada>
-            <p>2023 © Desenvolvido por Alura | Projeto fictício sem fins comerciais.</p>
+            <p>2023 Desenvolvido por Max Faria</p>
         </RodapeEstilizado>
     )
 }

@@ -4,17 +4,17 @@ import consulta from './assets/consulta.png';
 import styled from 'styled-components';
 
 interface Props {
-    imagem?: string,
+    imagem?: string
     children?: React.ReactNode
 }
 
 interface IImagens {
-    avaliacao: string,
-    grafico: string,
+    avaliacao: string
+    grafico: string
     consulta: string
 }
 
-const SpanEstilizado = styled.span<Props>`
+const SpanEstilizado =styled.span<Props> `
 background-repeat: no-repeat;
 background-position: center;
 background-size: cover;
@@ -32,7 +32,7 @@ const ContainerEstilizado = styled.div`
  align-items: center;
 `
 
-function Titulo({ imagem, children }: Props) {
+function Titulo({imagem, children}: Props) {
 
     const listaDeImagens: IImagens = {
         avaliacao: avaliacao,
@@ -42,10 +42,10 @@ function Titulo({ imagem, children }: Props) {
 
     return (
         <ContainerEstilizado>
-            {imagem && <SpanEstilizado imagem={listaDeImagens[imagem as keyof IImagens]} />}
+            {imagem && <SpanEstilizado imagem={listaDeImagens[imagem as keyof IImagens]}/>}
             <TituloEstilizado>{children}</TituloEstilizado>
         </ContainerEstilizado>
     )
 }
 
-export default Titulo;
+export default Titulo
