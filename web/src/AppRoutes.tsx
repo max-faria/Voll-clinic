@@ -11,8 +11,8 @@ export default function AppRoutes() {
         <BrowserRouter>
         <Routes>
             <Route path="/" element={<BasePagina/>}>
-            <Route path="/dashbord" element={<Dashbord/>} />
             <Route index element={<PaginaInicial/>}/>
+            <Route path="/dashbord" element={<Dashbord/>} />
             </Route>
             <Route path="/" element={<PaginaBaseFormularo/>}>
             <Route path="/login" element={<Login/>}/>
