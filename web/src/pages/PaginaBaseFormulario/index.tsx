@@ -5,16 +5,16 @@ import { Outlet } from 'react-router-dom'
 const ContainerPrincipal =styled.div`
 background-image: url(${imagemDeFundo});
 background-size: cover;
+min-height: 100vh;
 width: 100%;
-height:100vh;
 display: flex;
 flex-direction: column;
 align-items: center;`
 
 const Container = styled.div`
 background-color: white;
-height: 100%;
-width:60%;
+width: 60%;
+min-height: 100vh;
 display: flex;
 flex-direction: column;
 align-items: center;
