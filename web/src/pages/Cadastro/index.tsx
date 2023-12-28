@@ -2,11 +2,14 @@ import Imagem from "../../components/Imagem"
 import logo from "../../assets/logo.png"
 import { Step, StepLabel, Stepper } from "@mui/material"
 import { useState } from "react"
-import { BotaoCustomizado, Container, Formulario, StepCustomizada, TituloCadastro } from "./styles"
+import { BotaoCustomizado, Container, Formulario, MensagemDeErro, StepCustomizada, TituloCadastro } from "./styles"
 import CompoDigitacao from "../../components/CampoDigitacao"
 import Button from "../../components/Button"
 import axios from 'axios'
 import { esquemaValidacao } from "./EsquemaValidacao"
+import IClinica from "../../types/IClinica"
+import usePost from "../../usePost"
+import { useNavigate } from "react-router-dom"
 
 type ErrosFormulario = {
     nome?: string;
@@ -33,16 +36,43 @@ export default function Cadastro(){
 
     const [erros, setErros] = useState<ErrosFormulario>({});
 
+    const {cadastrarDados, erro, sucesso} = usePost()
+    const navigate = useNavigate()
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        try {
-            await esquemaValidacao.validate({nome},{ abortEarly: false })
-            setEtapaAtiva(etapaAtiva + 1);
-        }catch(err){
-            console.log(err)
+        // try {
+        //     await esquemaValidacao.validate({nome, cnpj},{ abortEarly: false })
+        // }catch(err){
+        //     console.log(err)
+        // }
+
+        const clinica: IClinica = {
+            email: email,
+            nome: nome,
+            senha: senha,
+            endereco: {
+                cep: cep,
+                rua: rua,
+                numero: bairro,
+                complemento: complemento,
+                estado: estado,
+            }
         }
+
+        if (etapaAtiva !== 0) {
+            try {
+                cadastrarDados({url: 'clinica', dados: clinica})
+                console.log('clinica')
+                navigate('/login')
+            } catch (erro) {
+                erro && alert('Erro ao cadastrar os dados')
+                
+            }
+        }
+
+        setEtapaAtiva(etapaAtiva + 1);
     }
 
     const handleNomeChange = (novoNome: string) => {
@@ -53,10 +83,23 @@ export default function Cadastro(){
     };
 
     const handleCnpjChange = (novoCnpj: string) => {
-        setCnpj(novoCnpj);
-        esquemaValidacao.validateAt('cnpj', { cnpj: novoCnpj })
+        const cnpjComMascara = aplicarMascaraCnpj(novoCnpj);
+        setCnpj(cnpjComMascara);
+        esquemaValidacao.validateAt('cnpj', { cnpj: cnpjComMascara })
             .then(() => setErros(errosAnteriores => ({ ...errosAnteriores, cnpj: '' })))
             .catch(err => setErros(errosAnteriores => ({ ...errosAnteriores, cnpj: err.message })));
+
+            console.log(cnpj)
+    };
+
+    const aplicarMascaraCnpj = (valor: string) => {
+        return valor
+            .replace(/\D/g, '') // Remove caracteres não numéricos
+            .replace(/^(\d{2})(\d)/, '$1.$2') // Coloca ponto após os dois primeiros dígitos
+            .replace(/^(\d{2}\.\d{3})(\d)/, '$1.$2') // Coloca ponto após os cinco primeiros dígitos
+            .replace(/\.(\d{3})(\d)/, '.$1/$2') // Coloca barra após os oito primeiros dígitos
+            .replace(/(\d{4})(\d)/, '$1-$2') // Coloca hífen após os doze primeiros dígitos
+            .substring(0, 18); // Limita o tamanho máximo do CNPJ
     };
 
 
@@ -108,7 +151,7 @@ export default function Cadastro(){
                 onChange={handleNomeChange}
                 label='Nome'/>
 
-                {erros.nome && <div className="erro">{erros.nome}</div>}
+                {erros.nome && <MensagemDeErro className="erro">{erros.nome}</MensagemDeErro>}
 
                 <CompoDigitacao 
                 valor={cnpj}
@@ -117,7 +160,7 @@ export default function Cadastro(){
                 onChange={handleCnpjChange}
                 label='CNPJ'/>
 
-                {erros.cnpj && <div className="erro">{erros.cnpj}</div>}
+                {erros.cnpj && <MensagemDeErro className="erro">{erros.cnpj}</MensagemDeErro>}
 
                 <CompoDigitacao 
                 valor={email}
@@ -146,7 +189,7 @@ export default function Cadastro(){
             </>
         ):(
             <>
-            <Formulario>
+            <Formulario onSubmit={handleSubmit}>
             <TituloCadastro>Agora, alguns dados técnicos:</TituloCadastro>
             <CompoDigitacao 
                 valor={telefone}

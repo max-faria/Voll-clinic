@@ -1,8 +1,5 @@
 import { Campo, CampoContainer, Container, Rotulo } from "./styles";
 
-
-
-
 interface  Props {
     valor: string,
     tipo: string,
@@ -10,8 +7,6 @@ interface  Props {
     onChange: (value: string) => void,
     label?: string;
 }
-
-
 
 export default function CompoDigitacao({valor, tipo, placeholder, onChange, label}: Props){
     return (

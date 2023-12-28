@@ -5,6 +5,7 @@ import Button from "../../components/Button"
 import Paragrafo from "../../components/Paragrafo"
 import logo from "../../assets/logo.png"
 import Imagem from "../../components/Imagem"
+import { Formulario } from "../Cadastro/styles"
 
 
 export default function Login(){
@@ -15,6 +16,7 @@ export default function Login(){
         <>
         <Imagem src={logo} alt="logo da voll"/>
         <LoginTitulo/>
+        <Formulario>
             <CampoDigitacao 
             valor={email} 
             tipo='text' 
@@ -29,6 +31,8 @@ export default function Login(){
             label='Senha'
             />
             <Button texto='Entrar'/>
+        </Formulario>
+
             <Paragrafo 
             texto='Esqueceu senha senha?' 
             subtexto="Ainda não tem conta?"

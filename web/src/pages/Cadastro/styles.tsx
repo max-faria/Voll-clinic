@@ -34,7 +34,12 @@ export const Container = styled.div`
 `;
 
 export const BotaoCustomizado = styled(Botao)`
-  width: 50%`
+  width: 50%;`
 
+export const MensagemDeErro = styled.div`
+color: red;
+font-size: 13px;
+font-weight: 700;
+`
 
 export { }
