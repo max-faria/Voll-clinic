@@ -64,7 +64,6 @@ export default function Cadastro(){
         if (etapaAtiva !== 0) {
             try {
                 cadastrarDados({url: 'clinica', dados: clinica})
-                console.log('clinica')
                 navigate('/login')
             } catch (erro) {
                 erro && alert('Erro ao cadastrar os dados')
