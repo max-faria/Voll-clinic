@@ -1,21 +1,37 @@
-![React com Typescript: desenvolvendo uma área administrativa com MUI, Recharts e Styled Components](https://imgur.com/Qgf3van.png)
+# React with TypeScript: Developing an Administrative Area
 
-# React com Typescript: desenvolvendo uma área administrativa
+The goal of this project is to build an administrative interface using React with TypeScript. It extensively utilizes modern libraries such as Styled-Components, MUI, and Recharts to create a rich and interactive user experience.
 
-Este projeto faz parte da escola Front-end e tem como objetivo ensinar a construção de uma página de área administrativa utilizando React com Typescript e as bibliotecas Styled-Components, MUI e Recharts.
+## Overview
 
-## Funcionalidades do projeto
+The project involves developing an administration page for Voll Clinic, accessible at [Voll Clinic Admin](https://voll-clinic.vercel.app). The interface is designed to be intuitive, responsive, and provide valuable insights through data visualizations.
 
-A página de área administrativa terá as seguintes funcionalidades:
+## Project Features
 
-- Dashboard: Página principal com tabela, gráficos e informações.
+- **Dashboard:** Displays critical information through tables and charts, providing an overview of the clinic's performance.
+- **Data Management:** Allows for viewing and manipulating data related to patients, staff, and clinic resources.
+- **Reporting:** Generates customizable reports for performance analysis and strategic planning.
 
-## Técnicas e tecnologias utilizadas
+## Techniques and Technologies Used
 
-As técnicas e tecnologias que serão utilizadas neste projeto são:
+[![My Skills](https://skillicons.dev/icons?i=ts,react,styledcomponents,materialui,redux,recharts)](https://skillicons.dev)
 
-- React: Biblioteca para construção de interfaces de usuário.
-- Typescript: Linguagem de programação que adiciona tipagem estática ao Javascript.
-- Styled-Components: Biblioteca para estilização de componentes React utilizando CSS-in-JS.
-- MUI: Biblioteca de componentes React para criação de interfaces de usuário modernas e responsivas.
-- Recharts: Biblioteca para criação de gráficos utilizando React.
+
+## Installation and Execution
+
+```bash
+git clone https://github.com/yourproject/voll-clinic-admin.git
+cd voll-clinic-admin
+npm install
+npm start
+```
+## License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details.
+
+## Author and Acknowledgments
+
+[Max Faria] - Front End Developer
+Thank any collaborators, mentors, or stakeholders.
+
+
