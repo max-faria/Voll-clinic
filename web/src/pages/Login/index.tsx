@@ -7,6 +7,8 @@ import logo from "../../assets/logo.png"
 import Imagem from "../../components/Imagem"
 import { Formulario } from "../Cadastro/styles"
 import usePost from "../../usePost"
+import autenticaStore from "../../stores/autentica.store"
+import { useNavigate } from "react-router-dom"
 
 interface ILogin {
     email:string,
@@ -16,7 +18,8 @@ interface ILogin {
 export default function Login(){
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
-    const {cadastrarDados, erro, sucesso} = usePost()
+    const {cadastrarDados, erro, sucesso, resposta} = usePost()
+    const navigate = useNavigate()
 
     const handleLogin =  async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -28,6 +31,8 @@ export default function Login(){
 
         try {
             cadastrarDados({url: 'auth/login', dados: usuario})
+            autenticaStore.login({email: email, token: resposta})
+            resposta && navigate('/dashbord')
         } catch (erro) {
             erro && alert ('Não foi possível fazer o login')
         }
